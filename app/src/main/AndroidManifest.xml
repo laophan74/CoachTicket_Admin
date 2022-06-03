@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoachTicket_Admin">
         <activity
-            android:name=".Main"
+            android:name=".Trip"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen1"
             android:exported="false" />
         <activity
             android:name=".SignUp"
@@ -22,7 +25,7 @@
             android:name=".SignIn"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen1"
+            android:name=".Main"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
