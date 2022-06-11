@@ -22,7 +22,7 @@ public class Main extends AppCompatActivity {
         trip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Main.this, Trip.class));
+                startActivity(new Intent(Main.this, AddTrip.class));
 
             }
         });

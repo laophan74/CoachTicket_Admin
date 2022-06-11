@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="135dp"
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:paddingLeft="10dp"
+                android:src="@drawable/tourbus"
+                app:civ_border_color="@color/MediumPurple"
+                app:civ_border_width="3dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/end1"
+            android:layout_toRightOf="@+id/img1"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
+
+            <TextView
+                android:id="@+id/tripname"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="fill"
+                android:text="Hà Nội - Đà Nẵng"
+                android:textColor="@color/Gray"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_below="@+id/tripname"
+                android:text="Ngày: dd/mm/yyyy"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/starttime"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_below="@+id/date"
+                android:text="Xuất phát: 7h40"
+                android:textSize="16dp" />
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:id="@+id/end1"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:id="@+id/img2"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/bus1"
+                app:civ_border_color="@color/MediumPurple"
+                app:civ_border_width="3dp" />
+
+            <TextView
+                android:id="@+id/travelcar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img2"
+                android:gravity="center"
+                android:text="Xe: HTM-335"
+                android:textColor="@color/DimGray" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

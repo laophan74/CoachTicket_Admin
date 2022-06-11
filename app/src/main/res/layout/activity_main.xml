@@ -110,8 +110,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
                                 android:src="@drawable/tickets"
-                                app:civ_border_width="3dp"
-                                app:civ_border_color="@color/MediumPurple"/>
+                                app:civ_border_color="@color/MediumPurple"
+                                app:civ_border_width="3dp" />
 
                             <TextView
                                 android:layout_width="match_parent"
