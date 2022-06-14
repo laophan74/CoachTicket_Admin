@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoachTicket_Admin">
         <activity
+            android:name=".EditCoach"
+            android:exported="false" />
+        <activity
+            android:name=".AddCoach"
+            android:exported="false" />
+        <activity
+            android:name=".AllTrip"
+            android:exported="false" />
+        <activity
+            android:name=".EditTrip"
+            android:exported="false" />
+        <activity
             android:name=".AddTrip"
             android:exported="false" />
         <activity
@@ -25,7 +37,7 @@
             android:name=".SignIn"
             android:exported="false" />
         <activity
-            android:name=".AllTrip"
+            android:name=".AllCoach"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

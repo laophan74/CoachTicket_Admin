@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="135dp"
+    android:layout_height="160dp"
     app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -14,12 +14,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:paddingLeft="10dp"
-                android:src="@drawable/tourbus"
+                android:src="@drawable/bus1"
                 app:civ_border_color="@color/MediumPurple"
                 app:civ_border_width="3dp" />
         </RelativeLayout>
@@ -27,68 +27,67 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/end1"
             android:layout_toRightOf="@+id/img1"
             android:paddingLeft="15dp"
             android:paddingTop="10dp"
             android:paddingBottom="15dp">
 
             <TextView
-                android:id="@+id/tripname"
+                android:id="@+id/plate"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:gravity="fill"
-                android:text="Hà Nội - Đà Nẵng"
+                android:text="MMH - 555"
                 android:textColor="@color/Gray"
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/detail"
                 android:layout_width="match_parent"
-                android:layout_height="28dp"
-                android:layout_below="@+id/tripname"
-                android:text="Ngày: dd/mm/yyyy"
+                android:layout_height="34dp"
+                android:layout_below="@+id/plate"
+                android:text="Xe giường nằm cao cấp"
                 android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/starttime"
+            <LinearLayout
+                android:id="@+id/l1"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
-                android:layout_below="@+id/date"
-                android:text="Xuất phát: 7h40"
-                android:textSize="16dp" />
+                android:layout_below="@+id/detail">
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="150dp"
+                    android:layout_height="28dp"
+                    android:text="Giá: 43"
+                    android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/speed"
+                    android:layout_width="130dp"
+                    android:layout_height="28dp"
+                    android:text="Tốc độ: 4"
+                    android:textSize="16dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_below="@+id/l1">
+                <TextView
+                    android:id="@+id/seat1"
+                    android:layout_width="150dp"
+                    android:layout_height="28dp"
+                    android:text="Ghế tầng 1: 12"
+                    android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/seat2"
+                    android:layout_width="130dp"
+                    android:layout_height="28dp"
+                    android:text="Ghế tầng 2: 8"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
         </RelativeLayout>
 
-
-
-        <RelativeLayout
-            android:id="@+id/end1"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true">
-
-            <ImageView
-                android:id="@+id/img2"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="10dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="5dp"
-                android:src="@drawable/bus1"
-                app:civ_border_color="@color/MediumPurple"
-                app:civ_border_width="3dp" />
-
-            <TextView
-                android:id="@+id/travelcar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/img2"
-                android:gravity="center"
-                android:text="Xe: HTM-335"
-                android:textColor="@color/DimGray" />
-
-        </RelativeLayout>
 
     </RelativeLayout>
 

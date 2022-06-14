@@ -1,48 +1,70 @@
 package com.example.coachticket_admin.Model;
 
-import com.google.firebase.Timestamp;
-
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
-public class Coach implements Serializable {
-    private String detail;
-    private int duration;
+public class Coach {
     private String plate;
+    private String detail;
     private int price;
-    private Boolean routeBN;
-    private ArrayList<Boolean> seat;
-    private ArrayList<Boolean> seat2nd;
-    private Timestamp start;
-    private int available;
     private int speed;
+    private int numseat1;
+    private int numseat2;
+    private ArrayList<Boolean> seat1;
+    private ArrayList<Boolean> seat2;
+    private String document;
 
-    public Coach() {}
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
+    public Coach(String plate, String detail, int price, int speed, int numseat1, int numseat2, ArrayList<Boolean> seat1, ArrayList<Boolean> seat2, String document) {
+        this.plate = plate;
         this.detail = detail;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
+        this.price = price;
         this.speed = speed;
+        this.numseat1 = numseat1;
+        this.numseat2 = numseat2;
+        this.seat1 = seat1;
+        this.seat2 = seat2;
+        this.document = document;
     }
 
-    public int getDuration() {
-        return duration;
+    public Coach(){};
+
+    public int getNumseat1() {
+        return numseat1;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setNumseat1(int numseat1) {
+        this.numseat1 = numseat1;
+    }
+
+    public int getNumseat2() {
+        return numseat2;
+    }
+
+    public void setNumseat2(int numseat2) {
+        this.numseat2 = numseat2;
+    }
+
+    public ArrayList<Boolean> getSeat1() {
+        return seat1;
+    }
+
+    public void setSeat1(ArrayList<Boolean> seat1) {
+        this.seat1 = seat1;
+    }
+
+    public ArrayList<Boolean> getSeat2() {
+        return seat2;
+    }
+
+    public void setSeat2(ArrayList<Boolean> seat2) {
+        this.seat2 = seat2;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
     }
 
     public String getPlate() {
@@ -53,6 +75,14 @@ public class Coach implements Serializable {
         this.plate = plate;
     }
 
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -61,46 +91,11 @@ public class Coach implements Serializable {
         this.price = price;
     }
 
-    public Boolean getRouteBN() {
-        return routeBN;
+    public int getSpeed() {
+        return speed;
     }
 
-    public void setRouteBN(Boolean routeBN) {
-        this.routeBN = routeBN;
-    }
-
-    public ArrayList<Boolean> getSeat() {
-        return seat;
-    }
-
-    public void setSeat(ArrayList<Boolean> seat) {
-        this.seat = seat;
-    }
-
-    public ArrayList<Boolean> getSeat2nd() {
-        return seat2nd;
-    }
-
-    public void setSeat2nd(ArrayList<Boolean> seat2nd) {
-        this.seat2nd = seat2nd;
-    }
-
-    public int getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(int available) {
-        this.available = available;
-    }
-
-    public Calendar getStart() {
-        Date d = start.toDate();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(d);
-        return calendar;
-    }
-
-    public void setStart(Timestamp start) {
-        this.start = start;
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }
