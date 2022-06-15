@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coachticket_admin.Model.City;
+import com.example.coachticket_admin.Model.Coach;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -37,12 +38,16 @@ public class AddTrip extends AppCompatActivity {
 
     private Spinner city1;
     private Spinner city2;
+    private Spinner coach;
 
     private ArrayList<City> lCity = new ArrayList<>();
     private ArrayList<String> lDist = new ArrayList<>();
+    private ArrayList<Coach> lCoach = new ArrayList<>();
+    private ArrayList<String> lDist1 = new ArrayList<>();
 
     private City cStart;
     private City cEnd;
+    private Coach coachName;
 
     private int y;
     private int m;
@@ -57,6 +62,7 @@ public class AddTrip extends AppCompatActivity {
         city1 = findViewById(R.id.city1);
         city2 = findViewById(R.id.city2);
         starttime = findViewById(R.id.starttime);
+        coach = findViewById(R.id.coach);
 
         dateTextview = findViewById(R.id.dateTextview);
         datePicker = findViewById(R.id.datePickerActions);
@@ -87,6 +93,7 @@ public class AddTrip extends AppCompatActivity {
 
         dateTextview.setText(y + "/" + (m + 1) + "/" + d);
 
+        LoadCoachs();
         LoadCities();
     }
 
@@ -139,18 +146,54 @@ public class AddTrip extends AppCompatActivity {
         return null;
     }
 
+    private void LoadCoachs() {
+        db.collection("TravelCars").get()
+                .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot doc : task.getResult()) {
+                                    Coach coach = doc.toObject(Coach.class);
+                                    lCoach.add(coach);
+                                }
+                                //Collections.sort(lCoach);
+                                for (Coach item : lCoach) {
+                                    lDist1.add(item.getPlate());
+                                }
+                                ArrayAdapter<String> aaC1 = new ArrayAdapter<>(AddTrip.this,
+                                        android.R.layout.simple_spinner_dropdown_item, lDist1);
+                                coach.setAdapter(aaC1);
+                                coach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                        coachName = ReturnCoach(coach.getSelectedItem().toString());
+                                    }
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> adapterView) {
+                                    }
+                                });
+
+                            }
+                        }
+                );
+    }
+    private Coach ReturnCoach(String x) {
+        for (Coach item : lCoach) {
+            if (x == item.getPlate()) return item;
+        }
+        return null;
+    }
     private void addBtnClick(){
         String start = cStart.getCname();
         String finish = cEnd.getCname();
         String date = dateTextview.getText().toString();
         String timestart = starttime.getText().toString();
+        String coach = coachName.getPlate();
 
         Map<String, Object> docData = new HashMap<>();
         docData.put("tripName", start+" - "+finish);
         docData.put("start", start);
         docData.put("finish", finish);
-        docData.put("date", date);
-        docData.put("starttime", timestart);
+        docData.put("departure_time", date);
+        docData.put("coach", coach);
 
         db.collection("Trips").document()
                 .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() {

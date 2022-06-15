@@ -99,7 +99,7 @@
                         android:orientation="vertical">
 
                         <RelativeLayout
-                            android:id="@+id/l1"
+                            android:id="@+id/ticket"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
@@ -127,12 +127,12 @@
                         </RelativeLayout>
 
                         <RelativeLayout
-                            android:id="@+id/l2"
+                            android:id="@+id/voucher"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
-                            android:layout_toRightOf="@id/l1">
+                            android:layout_centerHorizontal="true">
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/img2"
@@ -153,7 +153,34 @@
 
 
                         </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/map"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_alignParentEnd="true">
 
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/img3"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:src="@drawable/giftvoucher"
+                                app:civ_border_color="@color/MediumPurple"
+                                app:civ_border_width="3dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/img3"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="Bản đồ"
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
+
+
+                        </RelativeLayout>
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -225,6 +252,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/coach"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginLeft="8dp"

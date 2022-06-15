@@ -19,7 +19,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:paddingLeft="10dp"
-                android:src="@drawable/tourbus"
+                android:src="@drawable/tickets128"
                 app:civ_border_color="@color/MediumPurple"
                 app:civ_border_width="3dp" />
         </RelativeLayout>
@@ -48,47 +48,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
                 android:layout_below="@+id/tripname"
-                android:text="Ngày: dd/mm/yyyy"
+                android:text="Ngày: "
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/starttime"
+                android:id="@+id/userid"
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
                 android:layout_below="@+id/date"
-                android:text=""
+                android:text="Người đặt: "
                 android:textSize="16dp" />
         </RelativeLayout>
 
 
-
-        <RelativeLayout
-            android:id="@+id/end1"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true">
-
-            <ImageView
-                android:id="@+id/img2"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="10dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="5dp"
-                android:src="@drawable/bus1"
-                app:civ_border_color="@color/MediumPurple"
-                app:civ_border_width="3dp" />
-
-            <TextView
-                android:id="@+id/travelcar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/img2"
-                android:gravity="center"
-                android:text="Xe: HTM-335"
-                android:textColor="@color/DimGray" />
-
-        </RelativeLayout>
 
     </RelativeLayout>
 

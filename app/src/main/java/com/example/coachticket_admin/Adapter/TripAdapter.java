@@ -9,6 +9,8 @@ import com.example.coachticket_admin.Model.Trip;
 import com.example.coachticket_admin.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class TripAdapter extends BaseAdapter {
     private Context context;
@@ -43,16 +45,20 @@ public class TripAdapter extends BaseAdapter {
 
         TextView tripname = view.findViewById(R.id.tripname);
         TextView date = view.findViewById(R.id.date);
-        TextView starttime = view.findViewById(R.id.starttime);
         TextView travelcar = view.findViewById(R.id.travelcar);
 
         Trip trip = trips.get(i);
 
         tripname.setText(trip.getTripName());
-        date.setText("Ngày: "+trip.getDate());
-        starttime.setText("Xuất phát: "+trip.getStarttime());
-        travelcar.setText("Xe: "+trip.getTravelCar());
+        //date.setText("Ngày: "+String.valueOf( trip.getDeparture_time()));
+        travelcar.setText("Xe: "+trip.getCoach());
 
         return view;
     }
+    /*public Calendar GetDepartureDate(){
+        Date d = departure_time.toDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(d);
+        return calendar;
+    }*/
 }

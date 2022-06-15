@@ -5,7 +5,7 @@ import java.util.Date;
 public class User {
     private String username;
     private String name;
-    private String id;
+    private String cmnd;
     private Date dob;
     private int phone;
 
@@ -26,11 +26,11 @@ public class User {
     }
 
     public String getId() {
-        return id;
+        return cmnd;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.cmnd = id;
     }
 
     public Date getDob() {

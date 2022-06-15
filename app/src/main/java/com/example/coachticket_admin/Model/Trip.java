@@ -1,11 +1,12 @@
 package com.example.coachticket_admin.Model;
 
+import com.google.firebase.Timestamp;
+
 public class Trip {
     private String start;
     private String finish;
-    private String date;
-    private String starttime;
-    private String travelCar;
+    private com.google.firebase.Timestamp departure_time;
+    private String coach;
     private String tripName;
 
     private String document;
@@ -20,45 +21,21 @@ public class Trip {
 
     public Trip(){}
 
-    public Trip(String start, String finish, String date, String starttime, String travelCar, String tripName) {
+    public Trip(String start, String finish, Timestamp departure_time, String coach, String tripName, String document) {
         this.start = start;
         this.finish = finish;
-        this.date = date;
-        this.starttime = starttime;
-        this.travelCar = travelCar;
+        this.departure_time = departure_time;
+        this.coach = coach;
         this.tripName = tripName;
+        this.document = document;
     }
 
-    public String getTripName() {
-        return tripName;
+    public Timestamp getDeparture_time() {
+        return departure_time;
     }
 
-    public void setTripName(String tripName) {
-        this.tripName = tripName;
-    }
-
-    public String getTravelCar() {
-        return travelCar;
-    }
-
-    public void setTravelCar(String travelCar) {
-        this.travelCar = travelCar;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getStarttime() {
-        return starttime;
-    }
-
-    public void setStarttime(String starttime) {
-        this.starttime = starttime;
+    public void setDeparture_time(Timestamp departure_time) {
+        this.departure_time = departure_time;
     }
 
     public String getStart() {
@@ -75,5 +52,29 @@ public class Trip {
 
     public void setFinish(String finish) {
         this.finish = finish;
+    }
+
+    /*public Timestamp getDeparture_time() {
+        return departure_time;
+    }
+
+    public void setDeparture_time(Timestamp departure_time) {
+        this.departure_time = departure_time;
+    }*/
+
+    public String getCoach() {
+        return coach;
+    }
+
+    public void setCoach(String coach) {
+        this.coach = coach;
+    }
+
+    public String getTripName() {
+        return tripName;
+    }
+
+    public void setTripName(String tripName) {
+        this.tripName = tripName;
     }
 }

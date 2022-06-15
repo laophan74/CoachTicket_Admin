@@ -19,8 +19,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.coachticket_admin.Adapter.TripAdapter;
 import com.example.coachticket_admin.Model.City;
+import com.example.coachticket_admin.Model.Coach;
 import com.example.coachticket_admin.Model.Trip;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +28,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,13 +47,17 @@ public class EditTrip extends AppCompatActivity {
 
     private Spinner city1;
     private Spinner city2;
+    private Spinner coach;
+
 
     private ArrayList<City> lCity = new ArrayList<>();
     private ArrayList<String> lDist = new ArrayList<>();
+    private ArrayList<Coach> lCoach = new ArrayList<>();
+    private ArrayList<String> lDist1 = new ArrayList<>();
     private ArrayList<Trip> lTrip = new ArrayList<>();
     private Trip trip;
 
-
+    private Coach coachName;
     private City cStart;
     private City cEnd;
 
@@ -70,6 +73,7 @@ public class EditTrip extends AppCompatActivity {
 
         city1 = findViewById(R.id.city1);
         city2 = findViewById(R.id.city2);
+        coach = findViewById(R.id.coach);
         starttime = findViewById(R.id.starttime);
         delete = findViewById(R.id.deleteTrip);
         dateTextview = findViewById(R.id.dateTextview);
@@ -112,6 +116,7 @@ public class EditTrip extends AppCompatActivity {
         });
 
         LoadCities();
+        LoadCoachs();
         LoadTrip();
     }
 
@@ -123,10 +128,10 @@ public class EditTrip extends AppCompatActivity {
                 if(task.isSuccessful()){
                     DocumentSnapshot doc = task.getResult();
                     trip = doc.toObject(Trip.class);
-                    starttime.setText(trip.getStarttime());
-                    dateTextview.setText(trip.getDate());
+                    //dateTextview.setText(String.valueOf( trip.getDeparture_time()));
                     setPintext(city1,trip.getStart());
                     setPintext(city2,trip.getFinish());
+                    //setPintext(coach,trip.getCoach());
                 }
             }
         });
@@ -186,6 +191,42 @@ public class EditTrip extends AppCompatActivity {
         }
     }
 
+    private void LoadCoachs() {
+        db.collection("TravelCars").get()
+                .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot doc : task.getResult()) {
+                                    Coach coach = doc.toObject(Coach.class);
+                                    lCoach.add(coach);
+                                }
+                                //Collections.sort(lCoach);
+                                for (Coach item : lCoach) {
+                                    lDist1.add(item.getPlate());
+                                }
+                                ArrayAdapter<String> aaC1 = new ArrayAdapter<>(EditTrip.this,
+                                        android.R.layout.simple_spinner_dropdown_item, lDist1);
+                                coach.setAdapter(aaC1);
+                                coach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                        coachName = ReturnCoach(coach.getSelectedItem().toString());
+                                    }
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> adapterView) {
+                                    }
+                                });
+
+                            }
+                        }
+                );
+    }
+
+    private Coach ReturnCoach(String x) {
+        for (Coach item : lCoach) {
+            if (x == item.getPlate()) return item;
+        }
+        return null;
+    }
     private void DeleteTrip(){
         AlertDialog.Builder altd = new AlertDialog.Builder(EditTrip.this);
         altd.setMessage("Bạn có muốn xoá?")
@@ -219,14 +260,13 @@ public class EditTrip extends AppCompatActivity {
         String start = cStart.getCname();
         String finish = cEnd.getCname();
         String date = dateTextview.getText().toString();
-        String timestart = starttime.getText().toString();
+        String coach = coachName.getPlate();
 
         Map<String, Object> docData = new HashMap<>();
         docData.put("tripName", start+" - "+finish);
         docData.put("start", start);
         docData.put("finish", finish);
-        docData.put("date", date);
-        docData.put("starttime", timestart);
+        docData.put("coach", coach);
 
         db.collection("Trips").document(AllTrip.document)
                 .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() {

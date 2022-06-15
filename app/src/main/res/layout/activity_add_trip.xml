@@ -235,7 +235,7 @@
                     android:layout_marginRight="20dp">
 
                     <TextView
-                        android:id="@+id/t5"
+                        android:id="@+id/tt"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="5dp"
@@ -245,19 +245,19 @@
                         android:textSize="25dp"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/travelcar"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_below="@+id/t5"
-                        android:background="@drawable/edit_text_border"
-                        android:gravity="fill"
-                        android:maxLines="1"
-                        android:paddingLeft="12dp"
-                        android:textColor="@color/black"
-                        android:textSize="22dp" />
-                </RelativeLayout>
+                        android:layout_below="@+id/tt"
+                        android:background="@drawable/edit_text_border">
 
+                        <Spinner
+                            android:id="@+id/coach"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="5dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 
