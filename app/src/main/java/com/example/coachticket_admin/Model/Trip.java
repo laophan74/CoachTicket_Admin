@@ -2,13 +2,15 @@ package com.example.coachticket_admin.Model;
 
 import com.google.firebase.Timestamp;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class Trip {
     private String start;
     private String finish;
     private com.google.firebase.Timestamp departure_time;
     private String coach;
     private String tripName;
-
     private String document;
 
     public String getDocument() {
@@ -32,6 +34,18 @@ public class Trip {
 
     public Timestamp getDeparture_time() {
         return departure_time;
+    }
+
+    public String GetDepartureDate(){
+        Date d = departure_time.toDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(d);
+        String pickUp =
+                calendar.get(Calendar.HOUR_OF_DAY) + "giờ, ngày "
+                        + calendar.get(Calendar.DAY_OF_MONTH) + "/"
+                        +(calendar.get(Calendar.MONTH)+1) + "/"
+                        + calendar.get(Calendar.YEAR);
+        return pickUp;
     }
 
     public void setDeparture_time(Timestamp departure_time) {

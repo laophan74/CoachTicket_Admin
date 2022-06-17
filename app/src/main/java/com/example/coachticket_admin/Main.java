@@ -13,6 +13,8 @@ public class Main extends AppCompatActivity {
     private CardView trip;
     private CardView coach;
     private RelativeLayout ticket;
+    private RelativeLayout voucher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +24,15 @@ public class Main extends AppCompatActivity {
         ticket = findViewById(R.id.ticket);
         trip = findViewById(R.id.trip);
         coach = findViewById(R.id.coach);
+        voucher = findViewById(R.id.voucher);
 
+        voucher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Main.this, AllVoucher.class));
+
+            }
+        });
         ticket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

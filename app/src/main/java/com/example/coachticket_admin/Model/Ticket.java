@@ -1,6 +1,7 @@
 package com.example.coachticket_admin.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Ticket {
     private String start;
@@ -12,9 +13,10 @@ public class Ticket {
     private String username;
     private String tripName;
     private ArrayList<String> seatNumber;
-    //private int totalCost;
+    private int totalCost;
     private String trip;
     private String station;
+    private HashMap<String, Boolean> service;
 
     public Ticket(){};
 
@@ -30,6 +32,22 @@ public class Ticket {
         this.seatNumber = seatNumber;
         this.trip = trip;
         this.station = station;
+    }
+
+    public HashMap<String, Boolean> getService() {
+        return service;
+    }
+
+    public void setService(HashMap<String, Boolean> service) {
+        this.service = service;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
     }
 
     public String getTrip() {

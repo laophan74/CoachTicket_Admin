@@ -265,7 +265,7 @@
                 <RelativeLayout
                     android:id="@+id/ss"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    android:layout_height="200dp">
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv1"
                         android:layout_alignParentStart="true"
@@ -281,7 +281,7 @@
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="139dp"
+                            android:layout_height="match_parent"
                             android:orientation="vertical">
 
                             <TextView
@@ -306,6 +306,28 @@
                                 android:textSize="22dp"
                                 android:textStyle="bold" />
 
+                            <TextView
+                                android:id="@+id/mm"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/seatNumber"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="Giá: "
+                                android:textColor="@color/DarkGray"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:id="@+id/totalcost"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/mm"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:text="0đ"
+                                android:textColor="@color/black"
+                                android:textSize="22dp"
+                                android:textStyle="bold" />
                         </RelativeLayout>
 
                     </androidx.cardview.widget.CardView>
@@ -324,7 +346,7 @@
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="139dp"
+                            android:layout_height="match_parent"
                             android:orientation="vertical">
 
                             <TextView
@@ -356,7 +378,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
                                     android:gravity="center"
-                                    android:text="Có"
+                                    android:text=""
                                     android:textColor="@color/black"
                                     android:textSize="18dp"
                                     android:textStyle="bold"/>
@@ -365,7 +387,7 @@
                                 android:id="@+id/z4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/z3"
+                                android:layout_below="@+id/z5"
                                 android:paddingLeft="10dp">
                                 <TextView
                                     android:id="@+id/zz"
@@ -383,12 +405,65 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
                                     android:gravity="center"
-                                    android:text="Có"
+                                    android:text=""
                                     android:textColor="@color/black"
                                     android:textSize="18dp"
                                     android:textStyle="bold"/>
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:id="@+id/z5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/z3"
+                                android:paddingLeft="10dp">
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:gravity="fill"
+                                    android:text="Bữa khác: "
+                                    android:textColor="@color/DarkGray"
+                                    android:textSize="18dp" />
+                                <TextView
+                                    android:id="@+id/meal"
+                                    android:layout_below="@+id/z1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/z6"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/z4"
+                                android:paddingLeft="10dp">
+                                <TextView
+                                    android:layout_width="100dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:gravity="fill"
+                                    android:text="Bữa khác: "
+                                    android:textColor="@color/DarkGray"
+                                    android:textSize="18dp" />
+                                <TextView
+                                    android:id="@+id/insurance"
+                                    android:layout_below="@+id/z1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:gravity="center"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="18dp"
+                                    android:textStyle="bold"/>
+                            </LinearLayout>
                         </RelativeLayout>
 
                     </androidx.cardview.widget.CardView>

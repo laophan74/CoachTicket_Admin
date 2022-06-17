@@ -3,7 +3,16 @@ package com.example.coachticket_admin.Model;
 public class City implements Comparable<City> {
     private int distance;
     private String cname;
+    private String station;
     public City(){}
+
+    public String getStation() {
+        return station;
+    }
+
+    public void setStation(String station) {
+        this.station = station;
+    }
 
     public int getDistance() {
         return distance;

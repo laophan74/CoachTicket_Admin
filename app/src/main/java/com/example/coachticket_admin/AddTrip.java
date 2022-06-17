@@ -185,7 +185,6 @@ public class AddTrip extends AppCompatActivity {
         String start = cStart.getCname();
         String finish = cEnd.getCname();
         String date = dateTextview.getText().toString();
-        String timestart = starttime.getText().toString();
         String coach = coachName.getPlate();
 
         Map<String, Object> docData = new HashMap<>();

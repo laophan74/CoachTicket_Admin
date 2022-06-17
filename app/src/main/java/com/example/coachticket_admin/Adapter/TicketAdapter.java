@@ -52,9 +52,6 @@ public class TicketAdapter extends BaseAdapter {
         Ticket Ticket = coachs.get(i);
 
 
-
-
-
         name.setText(Ticket.getTripName());
         userid.setText(Ticket.getUserID());
         //date.setText(String.valueOf( Ticket.get()));

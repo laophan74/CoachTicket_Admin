@@ -50,15 +50,9 @@ public class TripAdapter extends BaseAdapter {
         Trip trip = trips.get(i);
 
         tripname.setText(trip.getTripName());
-        //date.setText("Ngày: "+String.valueOf( trip.getDeparture_time()));
+        date.setText(trip.GetDepartureDate());
         travelcar.setText("Xe: "+trip.getCoach());
 
         return view;
     }
-    /*public Calendar GetDepartureDate(){
-        Date d = departure_time.toDate();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(d);
-        return calendar;
-    }*/
 }

@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoachTicket_Admin">
         <activity
+            android:name=".AddVoucher"
+            android:exported="false" />
+        <activity
+            android:name=".EditVoucher"
+            android:exported="false" />
+        <activity
+            android:name=".AllVoucher"
+            android:exported="false" />
+        <activity
             android:name=".DetailTicket"
             android:exported="false" />
         <activity

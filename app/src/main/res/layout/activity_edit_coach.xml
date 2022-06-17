@@ -68,7 +68,7 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:gravity="fill"
-                        android:text="Sửa Xe"
+                        android:text="Sửa chi tiết Xe"
                         android:textColor="@color/MediumPurple"
                         android:textSize="35dp"
                         android:textStyle="bold" />
