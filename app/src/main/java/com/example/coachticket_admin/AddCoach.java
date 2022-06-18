@@ -97,7 +97,7 @@ public class AddCoach extends AppCompatActivity {
         docData.put("numSeat2", Integer.parseInt(Seat2));
 
 
-        db.collection("TravelCars").document()
+        db.collection("TravelCars").document(Plate)
                 .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {

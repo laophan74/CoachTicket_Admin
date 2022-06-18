@@ -12,6 +12,7 @@ public class Trip {
     private String tripName;
     private String document;
     private boolean isDone;
+    private String tripID;
 
     public String getDocument() {
         return document;
@@ -35,6 +36,13 @@ public class Trip {
         return pickUp;
     }
 
+    public String getTripID() {
+        return tripID;
+    }
+
+    public void setTripID(String tripID) {
+        this.tripID = tripID;
+    }
 
     public String getStart() {
         return start;

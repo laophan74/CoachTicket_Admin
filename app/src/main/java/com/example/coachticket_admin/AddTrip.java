@@ -55,6 +55,7 @@ public class AddTrip extends AppCompatActivity {
     private Coach coachName;
     private Calendar calendar;
 
+    private String dc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,6 +164,7 @@ public class AddTrip extends AppCompatActivity {
         return null;
     }
     private void addBtnClick(){
+
         String start = cStart.getCname();
         String finish = cEnd.getCname();
         Date date = calendar.getTime();
@@ -188,6 +190,7 @@ public class AddTrip extends AppCompatActivity {
         docData.put("seat1", seat1);
         docData.put("seat2", seat2);
         docData.put("available", avai);
+
 
         db.collection("Trips").document()
                 .set(docData).addOnSuccessListener(unused -> {
