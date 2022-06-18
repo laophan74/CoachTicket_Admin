@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.coachticket_admin.Adapter.CoachAdapter;
@@ -25,6 +26,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AllTicket extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -37,6 +40,7 @@ public class AllTicket extends AppCompatActivity {
     private User user;
 
     private ArrayList<Ticket> lCoach = new ArrayList<>();
+    private Map<String, String> map = new HashMap<>();
 
     public static String document;
     @Override
@@ -48,7 +52,6 @@ public class AllTicket extends AppCompatActivity {
         listView = findViewById(R.id.listview);
 
         GetAllCoach();
-
     }
 
     private void GetAllCoach(){
@@ -58,40 +61,34 @@ public class AllTicket extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for (QueryDocumentSnapshot doc : task.getResult()){
-                                Ticket coach = doc.toObject(Ticket.class);
+                                Ticket ticket = doc.toObject(Ticket.class);
 
-                                /*db.collection("Users").document(coach.getUserID()).get()
-                                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                if(task.isSuccessful()){
-                                                    user = task.getResult().toObject(User.class);
-                                                    *//*a = user.getUsername();*//*
-                                                    *//*db.collection("Trips").document(coach.getTrip()).get()
-                                                            .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                                                @Override
-                                                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                                    if(task.isSuccessful()){
-                                                                        Trip trip = task.getResult().toObject(Trip.class);
-                                                                        coach.setTrip(trip.getTripName());
-                                                                    }
-                                                                }
-                                                            });*//*
-                                                    coach.setUsername(user.getUsername());
-                                                    coach.setDocument(doc.getId());
-                                                    lCoach.add(coach);
-                                                }
-                                            }
-                                        });*/
+                                db.collection("Trips").document(ticket.getTrip())
+                                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        Trip trip = task.getResult().toObject(Trip.class);
+                                        ticket.setTripName(trip.getTripName());
+                                    }
+                                });
+                                db.collection("Users").document(ticket.getUserID())
+                                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        User user = task.getResult().toObject(User.class);
+                                        ticket.setUsername(user.getUsername());
+                                    }
+                                });
 
-                                coach.setDocument(doc.getId());
-                                lCoach.add(coach);
+                                ticket.setDocument(doc.getId());
+                                lCoach.add(ticket);
                             }
                             ticketAdapter = new TicketAdapter(AllTicket.this, lCoach);
                             listView.setAdapter(ticketAdapter);
                         }
                     }
                 });
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

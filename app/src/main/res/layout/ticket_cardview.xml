@@ -30,12 +30,12 @@
             android:layout_toRightOf="@+id/img1"
             android:paddingLeft="15dp"
             android:paddingTop="10dp"
-            android:paddingBottom="15dp">
+            android:paddingBottom="0dp">
 
             <TextView
                 android:id="@+id/tripname"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:gravity="fill"
                 android:text="Hà Nội - Đà Nẵng"
                 android:textColor="@color/Gray"
@@ -53,10 +53,18 @@
             <TextView
                 android:id="@+id/userid"
                 android:layout_width="match_parent"
-                android:layout_height="28dp"
+                android:layout_height="20dp"
                 android:layout_below="@+id/date"
-                android:text="Người đặt: "
-                android:textSize="16dp" />
+                android:text="ID: "
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@+id/userid"
+                android:text="ID: "
+                android:textSize="12dp" />
         </RelativeLayout>
 
 

@@ -93,8 +93,8 @@ public class AddCoach extends AppCompatActivity {
         docData.put("speed", Integer.parseInt(Speed));
         //docData.put("seat1", s1);
         //docData.put("seat2", s2);
-        docData.put("numseat1", Integer.parseInt(Seat1));
-        docData.put("numseat2", Integer.parseInt(Seat2));
+        docData.put("numSeat1", Integer.parseInt(Seat1));
+        docData.put("numSeat2", Integer.parseInt(Seat2));
 
 
         db.collection("TravelCars").document()
