@@ -1,5 +1,6 @@
 package com.example.coachticket_admin.Model;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,6 +13,9 @@ public class Ticket {
     private String userID;
     private String username;
     private String tripName;
+    private Timestamp purchaseDate;
+    private String pMethod;
+    private String status;
     private ArrayList<String> seatNumber;
     private int totalCost;
     private String trip;
@@ -19,20 +23,6 @@ public class Ticket {
     private HashMap<String, Boolean> service;
 
     public Ticket(){};
-
-    public Ticket(String start, String finish, String document, int numChild, int numAdult, String userID, String username, String tripName, ArrayList<String> seatNumber, String trip, String station) {
-        this.start = start;
-        this.finish = finish;
-        this.document = document;
-        this.numChild = numChild;
-        this.numAdult = numAdult;
-        this.userID = userID;
-        this.username = username;
-        this.tripName = tripName;
-        this.seatNumber = seatNumber;
-        this.trip = trip;
-        this.station = station;
-    }
 
     public HashMap<String, Boolean> getService() {
         return service;
@@ -136,5 +126,29 @@ public class Ticket {
 
     public void setFinish(String finish) {
         this.finish = finish;
+    }
+
+    public Timestamp getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Timestamp purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+    public String getpMethod() {
+        return pMethod;
+    }
+
+    public void setpMethod(String pMethod) {
+        this.pMethod = pMethod;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

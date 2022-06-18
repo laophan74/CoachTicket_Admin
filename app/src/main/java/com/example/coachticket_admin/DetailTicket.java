@@ -118,7 +118,7 @@ public class DetailTicket extends AppCompatActivity {
                                     DocumentSnapshot doc1 = task1.getResult();
                                     trip = doc1.toObject(Trip.class);
 
-                                    departuretime.setText(trip.getDeparture_time().toString());
+                                    departuretime.setText(trip.GetDepartureDate());
                                     start.setText(trip.getStart());
                                     finish.setText(trip.getFinish());
                                     db.collection("Cities").document(trip.getStart())

@@ -6,8 +6,8 @@ public class User {
     private String username;
     private String name;
     private String cmnd;
-    private Date dob;
-    private int phone;
+    private String dob;
+    private String phone;
 
     public String getUsername() {
         return username;
@@ -33,19 +33,19 @@ public class User {
         this.cmnd = id;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 }

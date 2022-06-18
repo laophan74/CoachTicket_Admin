@@ -106,8 +106,8 @@ public class EditCoach extends AppCompatActivity {
                     detail.setText(coach.getDetail());
                     price.setText(String.valueOf(coach.getPrice()));
                     speed.setText(String.valueOf(coach.getSpeed()));
-                    seat1.setText(String.valueOf(coach.getNumseat1()));
-                    seat2.setText(String.valueOf(coach.getNumseat2()));
+                    seat1.setText(String.valueOf(coach.getNumSeat1()));
+                    seat2.setText(String.valueOf(coach.getNumSeat2()));
 
                 }
             }
