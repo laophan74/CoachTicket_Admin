@@ -54,8 +54,8 @@ public class CoachAdapter extends BaseAdapter {
         detail.setText("Chi tiết: "+coach.getDetail());
         price.setText("Giá: "+coach.getPrice());
         speed.setText("Tốc độ: "+coach.getSpeed());
-        seat1.setText("Ghế tầng 1: "+coach.getNumseat1());
-        seat2.setText("Ghế tầng 2: "+coach.getNumseat2());
+        seat1.setText("Ghế tầng 1: "+coach.getNumSeat1());
+        seat2.setText("Ghế tầng 2: "+coach.getNumSeat2());
 
         return view;
     }

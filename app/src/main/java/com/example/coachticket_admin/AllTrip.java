@@ -42,12 +42,7 @@ public class AllTrip extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         add = findViewById(R.id.addTrip);
 
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AllTrip.this, AddTrip.class));
-            }
-        });
+        add.setOnClickListener(view -> startActivity(new Intent(AllTrip.this, AddTrip.class)));
         GetAllTrip();
 
     }
@@ -69,14 +64,10 @@ public class AllTrip extends AppCompatActivity {
                     }
                 });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Trip trip = lTrip.get(i);
-                document = trip.getDocument();
-                startActivity(new Intent(AllTrip.this, EditTrip.class));
-
-            }
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Trip trip = lTrip.get(i);
+            document = trip.getDocument();
+            startActivity(new Intent(AllTrip.this, EditTrip.class));
         });
     }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ import com.example.coachticket_admin.Model.Trip;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -32,6 +35,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,14 +45,13 @@ public class EditTrip extends AppCompatActivity {
     private Button edit;
     private ImageButton datePicker;
     private RelativeLayout delete;
-
+    private RadioButton rdYes, rdNo;
     private TextView dateTextview;
-    private EditText starttime;
 
     private Spinner city1;
     private Spinner city2;
     private Spinner coach;
-
+    private Calendar calendar;
 
     private ArrayList<City> lCity = new ArrayList<>();
     private ArrayList<String> lDist = new ArrayList<>();
@@ -74,30 +77,16 @@ public class EditTrip extends AppCompatActivity {
         city1 = findViewById(R.id.city1);
         city2 = findViewById(R.id.city2);
         coach = findViewById(R.id.coach);
-        starttime = findViewById(R.id.starttime);
         delete = findViewById(R.id.deleteTrip);
         dateTextview = findViewById(R.id.dateTextview);
         datePicker = findViewById(R.id.datePickerActions);
         edit = findViewById(R.id.editBtn);
-
-        Calendar cal = Calendar.getInstance();
-        y = cal.get(Calendar.YEAR);
-        m = cal.get(Calendar.MONTH);
-        d = cal.get(Calendar.DAY_OF_MONTH);
+        rdYes = findViewById(R.id.radioYes);
+        rdNo = findViewById(R.id.radioNo);
+        calendar = Calendar.getInstance();
 
         // Tạo DateTimePicker
-        datePicker.setOnClickListener(view -> {
-            DatePickerDialog pickerDialog = new DatePickerDialog(EditTrip.this,
-                    (datePicker, i, i1, i2) -> {
-                        dateTextview.setText(i2 + "/" + (i1 + 1) + "/" + i);
-                        y = i;
-                        m = i1;
-                        d = i2;
-                    }, y, m, d);
-            pickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
-            pickerDialog.show();
-        });
-        dateTextview.setText(y + "/" + (m + 1) + "/" + d);
+        datePicker.setOnClickListener(view -> ShowDateTimePicker());
 
         //Xoá trip
         delete.setOnClickListener(new View.OnClickListener() {
@@ -128,7 +117,10 @@ public class EditTrip extends AppCompatActivity {
                 if(task.isSuccessful()){
                     DocumentSnapshot doc = task.getResult();
                     trip = doc.toObject(Trip.class);
-                    //dateTextview.setText(String.valueOf( trip.getDeparture_time()));
+                    Date d = trip.getDeparture_time().toDate();
+                    calendar.setTime(d);
+                    SetDateTextView();
+                    if(trip.isDone()) rdYes.setChecked(true);
                     setPintext(city1,trip.getStart());
                     setPintext(city2,trip.getFinish());
                     //setPintext(coach,trip.getCoach());
@@ -259,14 +251,18 @@ public class EditTrip extends AppCompatActivity {
     private void EditBtnClick(){
         String start = cStart.getCname();
         String finish = cEnd.getCname();
-        String date = dateTextview.getText().toString();
+        Date date = calendar.getTime();
+        Timestamp ts = new Timestamp(date);
         String coach = coachName.getPlate();
+        boolean bool = rdYes.isChecked();
 
         Map<String, Object> docData = new HashMap<>();
         docData.put("tripName", start+" - "+finish);
         docData.put("start", start);
         docData.put("finish", finish);
         docData.put("coach", coach);
+        docData.put("departure_time", ts);
+        docData.put("isDone", bool);
 
         db.collection("Trips").document(AllTrip.document)
                 .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -277,6 +273,31 @@ public class EditTrip extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void ShowDateTimePicker(){
+        DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, i, i1, i2) -> {
+            calendar.set(Calendar.YEAR, i);
+            calendar.set(Calendar.MONTH, i1);
+            calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+            TimePickerDialog.OnTimeSetListener timeSetListener = (timePicker, t, t1) -> {
+                calendar.set(Calendar.HOUR_OF_DAY, t);
+                calendar.set(Calendar.MINUTE, t1);
+                SetDateTextView();
+            };
+            new TimePickerDialog(this, timeSetListener, 0, 0, false).show();
+        };
+        new DatePickerDialog(this, dateSetListener, calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private void SetDateTextView(){
+        String pickUp =
+                calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + " "
+                        + calendar.get(Calendar.DAY_OF_MONTH) + "/"
+                        +(calendar.get(Calendar.MONTH)+1) + "/"
+                        + calendar.get(Calendar.YEAR);
+        dateTextview.setText(pickUp);
     }
 }

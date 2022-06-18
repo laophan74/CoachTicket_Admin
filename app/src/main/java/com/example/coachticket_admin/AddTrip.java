@@ -3,29 +3,35 @@ package com.example.coachticket_admin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.coachticket_admin.Model.City;
 import com.example.coachticket_admin.Model.Coach;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AddTrip extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -34,7 +40,6 @@ public class AddTrip extends AppCompatActivity {
     private ImageButton datePicker;
 
     private TextView dateTextview;
-    private EditText starttime;
 
     private Spinner city1;
     private Spinner city2;
@@ -48,10 +53,8 @@ public class AddTrip extends AppCompatActivity {
     private City cStart;
     private City cEnd;
     private Coach coachName;
+    private Calendar calendar;
 
-    private int y;
-    private int m;
-    private int d;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,37 +64,16 @@ public class AddTrip extends AppCompatActivity {
         addBtn = findViewById(R.id.addBtn);
         city1 = findViewById(R.id.city1);
         city2 = findViewById(R.id.city2);
-        starttime = findViewById(R.id.starttime);
         coach = findViewById(R.id.coach);
 
         dateTextview = findViewById(R.id.dateTextview);
         datePicker = findViewById(R.id.datePickerActions);
+        calendar = Calendar.getInstance();
+        SetDateTextView();
 
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addBtnClick();
-            }
-        });
+        addBtn.setOnClickListener(view -> addBtnClick());
 
-        Calendar cal = Calendar.getInstance();
-        y = cal.get(Calendar.YEAR);
-        m = cal.get(Calendar.MONTH);
-        d = cal.get(Calendar.DAY_OF_MONTH);
-
-        datePicker.setOnClickListener(view -> {
-            DatePickerDialog pickerDialog = new DatePickerDialog(AddTrip.this,
-                    (datePicker, i, i1, i2) -> {
-                        dateTextview.setText(i2 + "/" + (i1 + 1) + "/" + i);
-                        y = i;
-                        m = i1;
-                        d = i2;
-                    }, y, m, d);
-            pickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
-            pickerDialog.show();
-        });
-
-        dateTextview.setText(y + "/" + (m + 1) + "/" + d);
+        datePicker.setOnClickListener(view -> ShowDateTimePicker());
 
         LoadCoachs();
         LoadCities();
@@ -154,7 +136,6 @@ public class AddTrip extends AppCompatActivity {
                                     Coach coach = doc.toObject(Coach.class);
                                     lCoach.add(coach);
                                 }
-                                //Collections.sort(lCoach);
                                 for (Coach item : lCoach) {
                                     lDist1.add(item.getPlate());
                                 }
@@ -177,33 +158,67 @@ public class AddTrip extends AppCompatActivity {
     }
     private Coach ReturnCoach(String x) {
         for (Coach item : lCoach) {
-            if (x == item.getPlate()) return item;
+            if (Objects.equals(x, item.getPlate())) return item;
         }
         return null;
     }
     private void addBtnClick(){
         String start = cStart.getCname();
         String finish = cEnd.getCname();
-        String date = dateTextview.getText().toString();
+        Date date = calendar.getTime();
+        Timestamp ts = new Timestamp(date);
         String coach = coachName.getPlate();
+        ArrayList<Boolean> seat1 = new ArrayList<>();
+        ArrayList<Boolean> seat2 = new ArrayList<>();
 
+        for(int i = 0; i < coachName.getNumSeat1(); i++){
+            seat1.add(false);
+        }
+        for(int i = 0; i < coachName.getNumSeat2(); i++){
+            seat2.add(false);
+        }
+        int avai = coachName.getNumSeat1() + coachName.getNumSeat2();
         Map<String, Object> docData = new HashMap<>();
-        docData.put("tripName", start+" - "+finish);
+        docData.put("tripName", start+" - " + finish);
         docData.put("start", start);
         docData.put("finish", finish);
-        docData.put("departure_time", date);
+        docData.put("departure_time", ts);
         docData.put("coach", coach);
+        docData.put("isDone", false);
+        docData.put("seat1", seat1);
+        docData.put("seat2", seat2);
+        docData.put("available", avai);
 
         db.collection("Trips").document()
-                .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(AddTrip.this, "Thành công!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(AddTrip.this, AllTrip.class));
-
-            }
-        });
-
+                .set(docData).addOnSuccessListener(unused -> {
+                    Toast.makeText(AddTrip.this, "Thành công!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddTrip.this, AllTrip.class));
+                });
     }
 
+    private void ShowDateTimePicker(){
+        DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, i, i1, i2) -> {
+            calendar.set(Calendar.YEAR, i);
+            calendar.set(Calendar.MONTH, i1);
+            calendar.set(Calendar.DAY_OF_MONTH, i2);
+
+            TimePickerDialog.OnTimeSetListener timeSetListener = (timePicker, t, t1) -> {
+                calendar.set(Calendar.HOUR_OF_DAY, t);
+                calendar.set(Calendar.MINUTE, t1);
+                SetDateTextView();
+            };
+            new TimePickerDialog(this, timeSetListener, 0, 0, false).show();
+        };
+        new DatePickerDialog(this, dateSetListener, calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    private void SetDateTextView(){
+        String pickUp =
+                calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + " "
+                + calendar.get(Calendar.DAY_OF_MONTH) + "/"
+                +(calendar.get(Calendar.MONTH)+1) + "/"
+                + calendar.get(Calendar.YEAR);
+        dateTextview.setText(pickUp);
+    }
 }
