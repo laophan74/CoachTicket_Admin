@@ -60,7 +60,7 @@ public class ControlTicketActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         for(DocumentSnapshot doc : task.getResult()){
                             Trip trip = doc.toObject(Trip.class);
-                            trip.setDocument(doc.getId());
+                            trip.setTripID(doc.getId());
                             lTrip.add(trip);
                         }
                         tripAdapter = new TripAdapter(ControlTicketActivity.this, lTrip);
@@ -69,7 +69,7 @@ public class ControlTicketActivity extends AppCompatActivity {
                 });
         binding.listview.setOnItemClickListener((adapterView, view, i, l) -> {
             Trip trip = lTrip.get(i);
-            search = trip.getDocument();
+            search = trip.getTripID();
             QRcodeScanner(view);
         });
     }

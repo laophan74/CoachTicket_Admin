@@ -10,17 +10,8 @@ public class Trip {
     private Timestamp departure_time;
     private String coach;
     private String tripName;
-    private String document;
     private boolean isDone;
     private String tripID;
-
-    public String getDocument() {
-        return document;
-    }
-
-    public void setDocument(String document) {
-        this.document = document;
-    }
 
     public Trip(){}
 

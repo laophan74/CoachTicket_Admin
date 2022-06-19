@@ -55,7 +55,7 @@ public class AllTrip extends AppCompatActivity {
                         if(task.isSuccessful()){
                             for (QueryDocumentSnapshot doc : task.getResult()){
                                 Trip trip = doc.toObject(Trip.class);
-                                trip.setDocument(doc.getId());
+                                trip.setTripID(doc.getId());
                                 lTrip.add(trip);
                             }
                             tripAdapter = new TripAdapter(AllTrip.this, lTrip);
@@ -66,7 +66,7 @@ public class AllTrip extends AppCompatActivity {
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             Trip trip = lTrip.get(i);
-            document = trip.getDocument();
+            document = trip.getTripID();
             startActivity(new Intent(AllTrip.this, EditTrip.class));
         });
     }
