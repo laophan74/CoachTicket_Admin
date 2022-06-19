@@ -9,73 +9,55 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.coachticket_admin.Model.City;
 import com.example.coachticket_admin.Model.Coach;
-import com.example.coachticket_admin.Model.Voucher;
+import com.example.coachticket_admin.Model.City;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class EditVoucher extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
+
+public class EditCity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private TextView id;
-    private Button status;
+    private TextView cname;
+    private EditText station;
+    private EditText distance;
     private ImageView back;
-
-    private Voucher voucher;
+    private City city;
     private RelativeLayout delete;
+    private Button editBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_voucher);
+        setContentView(R.layout.activity_edit_city);
         getSupportActionBar().hide();
 
-        id = findViewById(R.id.idvoucher);
-        status = findViewById(R.id.status);
+        cname = findViewById(R.id.cname);
+        station = findViewById(R.id.station);
+        distance = findViewById(R.id.distance);
+
+        editBtn = findViewById(R.id.editBtn);
         delete = findViewById(R.id.delete);
         back = findViewById(R.id.backPress);
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(EditVoucher.this, AllVoucher.class));
+                startActivity(new Intent(EditCity.this, AllCity.class));
 
             }
         });
-        //click status button
-        status.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(status.getText()=="Đã kích hoạt"){
-                    status.setText("Chưa kích hoạt");
-                    status.setBackgroundResource(R.drawable.buttonshapeyellow);
-                    db.collection("Vouchers").document(AllVoucher.document)
-                            .update("status",false).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                        }
-                    });
-                }
-                else {
-                    status.setText("Đã kích hoạt");
-                    status.setBackgroundResource(R.drawable.buttonshape);
-                    db.collection("Vouchers").document(AllVoucher.document)
-                            .update("status",true).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                        }
-                    });
-                }
-            }
-        });
-
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,40 +65,43 @@ public class EditVoucher extends AppCompatActivity {
             }
         });
 
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditBtnClick();
+            }
+        });
         Load();
     }
 
     private void Load(){
-        db.collection("Vouchers").document(AllVoucher.document)
+        db.collection("Cities").document(AllCity.document)
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     DocumentSnapshot doc = task.getResult();
-                    voucher = doc.toObject(Voucher.class);
-                    id.setText(voucher.getId());
-
-                    String st;
-                    if(voucher.getStatus()==true)st = "Đã kích hoạt";
-                    else st = "Chưa kích hoạt";
-                    status.setText(st);
+                    city = doc.toObject(City.class);
+                    cname.setText(city.getCname());
+                    station.setText(city.getStation());
+                    distance.setText(String.valueOf(city.getDistance()));
                 }
             }
         });
     }
 
     private void Delete(){
-        AlertDialog.Builder altd = new AlertDialog.Builder(EditVoucher.this);
+        AlertDialog.Builder altd = new AlertDialog.Builder(EditCity.this);
         altd.setMessage("Bạn có muốn xoá?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        db.collection("Vouchers").document(AllVoucher.document)
+                        db.collection("Cities").document(AllCity.document)
                                 .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(EditVoucher.this, "Xoá thành công", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(EditVoucher.this, AllVoucher.class));
+                                Toast.makeText(EditCity.this, "Xoá thành công", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(EditCity.this, AllCity.class));
 
                             }
                         });
@@ -132,5 +117,27 @@ public class EditVoucher extends AppCompatActivity {
         AlertDialog alert = altd.create();
         alert.setTitle("Cảnh báo!!!");
         alert.show();
+    }
+
+    private void EditBtnClick(){
+        String Cname = cname.getText().toString();
+        String Station = station.getText().toString();
+        String Distance = distance.getText().toString();
+
+        Map<String, Object> docData = new HashMap<>();
+        docData.put("station", Station);
+        docData.put("distance", Integer.parseInt(Distance));
+        docData.put("cname", Cname);
+
+        db.collection("Cities").document(AllCity.document)
+                .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(EditCity.this, "Thành công!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(EditCity.this, AllCity.class));
+
+            }
+        });
+
     }
 }

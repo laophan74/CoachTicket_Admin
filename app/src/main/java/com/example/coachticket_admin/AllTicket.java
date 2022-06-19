@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class AllTicket extends AppCompatActivity {
     private RelativeLayout add;
     private ListView listView;
     private TicketAdapter ticketAdapter;
+    private ImageView back;
 
     private String a = "";
     private User user;
@@ -50,7 +52,15 @@ public class AllTicket extends AppCompatActivity {
         getSupportActionBar().hide();
 
         listView = findViewById(R.id.listview);
+        back = findViewById(R.id.backPress);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AllTicket.this, Main.class));
+
+            }
+        });
         GetAllCoach();
     }
 

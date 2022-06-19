@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="135dp"
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/img1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:paddingLeft="10dp"
+                android:src="@drawable/cityy"
+                app:civ_border_color="@color/MediumPurple"
+                app:civ_border_width="3dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/img1"
+            android:paddingLeft="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="0dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="fill"
+                android:text="Hà Nội"
+                android:textColor="@color/Gray"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/station"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_below="@+id/name"
+                android:text="stati: "
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@+id/station"
+                android:text="dt: "
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

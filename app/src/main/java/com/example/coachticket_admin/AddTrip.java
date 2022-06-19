@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class AddTrip extends AppCompatActivity {
 
     private Button addBtn;
     private ImageButton datePicker;
+    private ImageView back;
 
     private TextView dateTextview;
 
@@ -69,6 +71,15 @@ public class AddTrip extends AppCompatActivity {
         datePicker = findViewById(R.id.datePickerActions);
         calendar = Calendar.getInstance();
         SetDateTextView();
+        back = findViewById(R.id.backPress);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddTrip.this, AllTrip.class));
+
+            }
+        });
 
         addBtn.setOnClickListener(view -> addBtnClick());
 

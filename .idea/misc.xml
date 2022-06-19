@@ -21,24 +21,34 @@
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/drawable/ic_baseline_arrow_right_24.xml" value="0.1355" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/drawable/ic_baseline_child_care_24.xml" value="0.1355" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/drawable/ic_baseline_clear_24.xml" value="0.1355" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1355" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.1355" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_add_city.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_add_coach.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_add_trip.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_add_voucher.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_all_city.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_all_coach.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_all_ticket.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_all_trip.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_all_voucher.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_all_voucher2.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_control_ticket.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_detail_ticket.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_edit_city.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_edit_coach.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_edit_trip.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_edit_voucher.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_map.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_mmap.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_sign_in.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_splash_screen1.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_splash_screen2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/activity_trip.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/city_cardview.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/coach_cardview.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/custom_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/ASUS/Desktop/CoachTicket_Admin/app/src/main/res/layout/layout_custom_dialog.xml" value="0.25416666666666665" />

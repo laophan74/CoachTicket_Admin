@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,28 +17,31 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddVoucher extends AppCompatActivity {
+public class AddCity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Button add;
-    private TextView id;
-    private TextView off;
-    private ImageView back;
+    private EditText cname;
+    private EditText distance;
+    private EditText station;
 
+    private ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_voucher);
+        setContentView(R.layout.activity_add_city);
         getSupportActionBar().hide();
 
-        id = findViewById(R.id.idvoucher);
-        off = findViewById(R.id.off);
+        cname = findViewById(R.id.cname);
+        distance = findViewById(R.id.distance);
+        station = findViewById(R.id.station);
+
         add = findViewById(R.id.addBtn);
         back = findViewById(R.id.backPress);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddVoucher.this, AllVoucher.class));
+                startActivity(new Intent(AddCity.this, AllCity.class));
 
             }
         });
@@ -45,35 +49,28 @@ public class AddVoucher extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!off.getText().toString().matches("[0-9]+"))
-                {
-                    Toast.makeText(AddVoucher.this, "Nhập sai định dạng!", Toast.LENGTH_SHORT).show();
-                }
-                else if (id.getText().toString() == "" ||
-                        off.getText().toString() == "" ){
-                    Toast.makeText(AddVoucher.this, "Không được để trống", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    addBtn();
-                }
+                addBtn();
+
             }
         });
     }
     private void addBtn() {
-        String Id = id.getText().toString();
-        String Off = off.getText().toString();
+        String Cname = cname.getText().toString();
+        String Station = station.getText().toString();
+        String Distance = distance.getText().toString();
+
 
         Map<String, Object> docData = new HashMap<>();
-        docData.put("id", Id);
-        docData.put("off", Integer.parseInt(Off));
-        docData.put("status", false);
+        docData.put("cname", Cname);
+        docData.put("distance", Integer.parseInt(Distance));
+        docData.put("station", Station);
 
-        db.collection("Vouchers").document(Id)
+        db.collection("Cities").document(Cname)
                 .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
-                Toast.makeText(AddVoucher.this, "Thành công!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(AddVoucher.this, AllVoucher.class));
+                Toast.makeText(AddCity.this, "Thành công!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AddCity.this, AllCity.class));
             }
         });
 

@@ -30,14 +30,6 @@
                     android:layout_alignParentTop="true"
                     android:src="@drawable/ic_arrow_back_white_24dp" />
 
-                <ImageView
-                    android:id="@+id/profile"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_baseline_person_outline_24" />
-
             </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>

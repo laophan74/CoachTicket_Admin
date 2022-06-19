@@ -3,7 +3,10 @@ package com.example.coachticket_admin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,7 @@ public class DetailTicket extends AppCompatActivity {
     private TextView suitcase;
     private TextView code;
     private TextView totalcost;
+    private ImageView back;
 
     private Ticket ticket;
     private Trip trip;
@@ -66,7 +70,15 @@ public class DetailTicket extends AppCompatActivity {
         insurance = findViewById(R.id.insurance);
         code = findViewById(R.id.code);
         totalcost = findViewById(R.id.totalcost);
+        back = findViewById(R.id.backPress);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DetailTicket.this, AllTicket.class));
+
+            }
+        });
         Load();
     }
     private void Load(){
@@ -81,7 +93,7 @@ public class DetailTicket extends AppCompatActivity {
 
                     numAdult.setText(String.valueOf( ticket.getNumAdult()));
                     numChild.setText(String.valueOf(ticket.getNumChild()));
-                    totalcost.setText(String.valueOf(ticket.getTotalCost()+"đ"));
+                    totalcost.setText(String.valueOf(ticket.getTotalCost()+"$"));
 
                     //seat number
                     ArrayList<String> seatnumar = new ArrayList<>();
@@ -121,6 +133,7 @@ public class DetailTicket extends AppCompatActivity {
                                     departuretime.setText(trip.GetDepartureDate());
                                     start.setText(trip.getStart());
                                     finish.setText(trip.getFinish());
+                                    code.setText(trip.getTripID());
                                     db.collection("Cities").document(trip.getStart())
                                             .get().addOnCompleteListener(task11 -> {
                                                 if(task11.isSuccessful()){

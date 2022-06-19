@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -30,6 +31,7 @@ public class AllTrip extends AppCompatActivity {
     private TripAdapter tripAdapter;
 
     private ArrayList<Trip> lTrip = new ArrayList<>();
+    private ImageView back;
 
 
     public static String document;
@@ -41,7 +43,15 @@ public class AllTrip extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
         add = findViewById(R.id.addTrip);
+        back = findViewById(R.id.backPress);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AllTrip.this, Main.class));
+
+            }
+        });
         add.setOnClickListener(view -> startActivity(new Intent(AllTrip.this, AddTrip.class)));
         GetAllTrip();
 

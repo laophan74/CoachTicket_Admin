@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".SignUp">
+    tools:context=".SignUp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/backPress"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_arrow_back_white_24dp" />
 
     <TextView
-        android:id="@+id/signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="-45dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="Sign Up"
         android:textColor="@color/white"
@@ -22,30 +32,48 @@
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/tvUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signin"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
-        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:drawableStart="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
         android:hint="Username"
+        android:textSize="18sp"
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/tvEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#30ffffff"
+        android:drawableLeft="@drawable/ic_baseline_info_24"
+        android:drawablePadding="20dp"
+        android:hint="Email"
+        android:textSize="18sp"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+
+    <EditText
+        android:id="@+id/tvPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="18sp"
         android:layout_marginBottom="10dp"
         android:background="#30ffffff"
         android:drawableLeft="@drawable/ic_baseline_info_24"
@@ -55,12 +83,10 @@
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
-
     <EditText
-        android:id="@+id/retypepassword"
+        android:id="@+id/tvRepeatPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
@@ -69,79 +95,22 @@
         android:drawableLeft="@drawable/ic_baseline_info_24"
         android:drawablePadding="20dp"
         android:hint="Retype Password"
-        android:inputType="textPassword"
         android:padding="20dp"
+        android:textSize="18sp"
+        android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/signupbtn"
+        android:id="@+id/btnSignUp"
+        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/retypepassword"
-        android:layout_alignEnd="@+id/retypepassword"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="150dp"
+        android:layout_gravity="center"
         android:backgroundTint="@color/design_default_color_secondary"
-        android:text="SIGN UP" />
-
-    <TextView
-        android:id="@+id/others"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/socialicons"
-        android:layout_centerHorizontal="true"
-        android:text="or sign in with" />
-
-    <TextView
-        android:id="@+id/already"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/socialicons"
-        android:layout_marginLeft="70dp"
-        android:layout_marginBottom="44dp"
-        android:text="already have an account?" />
-
-    <TextView
-        android:id="@+id/signinbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/socialicons"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="45dp"
-        android:layout_toRightOf="@+id/already"
-        android:text="Sign in"
-        android:textColor="@color/Red"
-        android:textSize="16dp"
-        android:textStyle="bold"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/socialicons"
-        android:layout_alignParentBottom="true"
-        android:gravity="center">
+        android:text="Sign Up" />
 
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/google"/>
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/fb"/>
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_margin="20dp"
-            android:src="@drawable/twitter"/>
-
-    </LinearLayout>
 
 
-</RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

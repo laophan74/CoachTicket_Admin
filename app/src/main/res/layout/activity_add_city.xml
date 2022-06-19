@@ -61,7 +61,7 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:gravity="fill"
-                        android:text="Sửa chi tiết Xe"
+                        android:text="Thêm Thành phố"
                         android:textColor="@color/MediumPurple"
                         android:textSize="35dp"
                         android:textStyle="bold" />
@@ -81,13 +81,13 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="5dp"
                         android:gravity="fill"
-                        android:text="Biển số xe"
+                        android:text="Tên thành phố"
                         android:textColor="@color/black"
                         android:textSize="25dp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/plate"
+                        android:id="@+id/cname"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_below="@+id/t1"
@@ -112,53 +112,22 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="5dp"
                         android:gravity="fill"
-                        android:text="Chi tiết"
+                        android:text="Bến xe"
                         android:textColor="@color/black"
                         android:textSize="25dp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/detail"
+                        android:id="@+id/station"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_below="@+id/t7"
                         android:background="@drawable/edit_text_border"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
                         android:maxLines="2"
                         android:paddingLeft="25dp"
                         android:textColor="@color/black"
-                        android:textSize="22dp"
-                        android:fontFamily="sans-serif"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp">
-
-                    <TextView
-                        android:id="@+id/t8"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="fill"
-                        android:text="Giá tiền/1 km"
-                        android:textColor="@color/black"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/price"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_below="@+id/t8"
-                        android:background="@drawable/edit_text_border"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingLeft="25dp"
-                        android:textColor="@color/black"
                         android:textSize="22dp" />
                 </RelativeLayout>
 
@@ -170,119 +139,30 @@
                     android:layout_marginRight="20dp">
 
                     <TextView
-                        android:id="@+id/t3"
+                        android:id="@+id/t0"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginLeft="5dp"
                         android:gravity="fill"
-                        android:text="Tốc độ (km/h)"
+                        android:text="Khoảng cách(tính từ Hà Nội)"
                         android:textColor="@color/black"
                         android:textSize="25dp"
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/speed"
+                        android:id="@+id/distance"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_below="@+id/t3"
+                        android:layout_below="@+id/t0"
                         android:background="@drawable/edit_text_border"
+                        android:fontFamily="sans-serif"
                         android:gravity="center"
-                        android:maxLines="1"
+                        android:maxLines="2"
                         android:paddingLeft="25dp"
                         android:textColor="@color/black"
                         android:textSize="22dp" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp">
-
-                    <TextView
-                        android:id="@+id/t5"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="fill"
-                        android:text="Ghế tầng 1"
-                        android:textColor="@color/black"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/seat1"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_below="@+id/t5"
-                        android:background="@drawable/edit_text_border"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingLeft="25dp"
-                        android:text="0"
-                        android:textColor="@color/black"
-                        android:textSize="22dp" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp">
-
-                    <TextView
-                        android:id="@+id/tt"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="fill"
-                        android:text="Ghế tầng 2"
-                        android:textColor="@color/black"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/seat2"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_below="@+id/tt"
-                        android:background="@drawable/edit_text_border"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingLeft="25dp"
-                        android:text="0"
-                        android:textColor="@color/black"
-                        android:textSize="22dp" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/deleteCoach"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="300dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:fontFamily="sans-serif-condensed-medium"
-                        android:gravity="fill"
-                        android:paddingLeft="10dp"
-                        android:text="Xoá xe"
-                        android:textColor="@color/MediumPurple"
-                        android:textSize="30dp" />
-
-
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:src="@drawable/ic_baseline_clear_24" />
-
-                </RelativeLayout>
 
             </LinearLayout>
 
@@ -294,12 +174,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/editBtn"
+            android:id="@+id/addBtn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="5dp"
             android:background="@drawable/buttonshape"
-            android:text="Sửa"
+            android:text="Thêm"
             android:textAllCaps="false"
             android:textColor="#ffffff"
             android:textSize="20sp"

@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -47,6 +48,7 @@ public class EditTrip extends AppCompatActivity {
     private RelativeLayout delete;
     private RadioButton rdYes, rdNo;
     private TextView dateTextview;
+    private ImageView back;
 
     private Spinner city1;
     private Spinner city2;
@@ -79,7 +81,15 @@ public class EditTrip extends AppCompatActivity {
         rdYes = findViewById(R.id.radioYes);
         rdNo = findViewById(R.id.radioNo);
         calendar = Calendar.getInstance();
+        back = findViewById(R.id.backPress);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EditTrip.this, AllTrip.class));
+
+            }
+        });
         // Tạo DateTimePicker
         datePicker.setOnClickListener(view -> ShowDateTimePicker());
 

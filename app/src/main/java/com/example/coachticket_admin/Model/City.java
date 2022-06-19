@@ -4,7 +4,16 @@ public class City implements Comparable<City> {
     private int distance;
     private String cname;
     private String station;
+    private String document;
     public City(){}
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
 
     public String getStation() {
         return station;

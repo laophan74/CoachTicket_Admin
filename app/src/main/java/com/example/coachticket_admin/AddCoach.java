@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class AddCoach extends AppCompatActivity {
     private TextView seat1;
     private TextView seat2;
     private Button add;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,15 @@ public class AddCoach extends AppCompatActivity {
         seat1 = findViewById(R.id.seat1);
         seat2 = findViewById(R.id.seat2);
         add = findViewById(R.id.addBtn);
+        back = findViewById(R.id.backPress);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddCoach.this, AllCoach.class));
+
+            }
+        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override

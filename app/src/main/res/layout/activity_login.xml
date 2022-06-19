@@ -7,6 +7,21 @@
     android:background="@drawable/background">
 
     <TextView
+        android:id="@+id/signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Sign Up"
+        android:textColor="@color/Red"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,10 +79,10 @@
         android:layout_below="@id/tvPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:textSize="20sp"
-        android:padding="9dp"
         android:backgroundTint="@color/design_default_color_secondary"
-        android:text="LOGIN" />
+        android:padding="9dp"
+        android:text="LOGIN"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/others"

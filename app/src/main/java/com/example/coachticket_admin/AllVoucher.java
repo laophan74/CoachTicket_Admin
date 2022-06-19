@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -31,6 +32,7 @@ public class AllVoucher extends AppCompatActivity {
     private VoucherAdapter voucherAdapter;
 
     private ArrayList<Voucher> lVoucher = new ArrayList<>();
+    private ImageView back;
 
 
     public static String document;
@@ -42,7 +44,15 @@ public class AllVoucher extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
         add = findViewById(R.id.add);
+        back = findViewById(R.id.backPress);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AllVoucher.this, Main.class));
+
+            }
+        });
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

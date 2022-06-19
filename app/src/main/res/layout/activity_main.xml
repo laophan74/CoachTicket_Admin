@@ -23,11 +23,19 @@
                 android:layout_marginEnd="5dp">
 
                 <ImageView
+                    android:id="@+id/btnControlT"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/userprofile"
+                    android:src="@drawable/ic_baseline_qr_code_scanner_24" />
+                <ImageView
+                    android:id="@+id/userprofile"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_person_outline_white_24dp" />
+                    android:src="@drawable/ic_baseline_logout_24" />
 
             </RelativeLayout>
 
@@ -76,20 +84,13 @@
                         android:layout_below="@+id/hello"
                         android:layout_marginTop="8dp"
                         android:fontFamily="sans-serif"
-                        android:text="USER1"
+                        android:text="LAOPHAN74"
                         android:textAlignment="center"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
 
                 </RelativeLayout>
 
-                <Button
-                    android:id="@+id/btnControlT"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="30dp"
-                    android:text="Soát vé QR CODE"
-                    android:textSize="20sp"/>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -162,7 +163,7 @@
 
                         </RelativeLayout>
                         <RelativeLayout
-                            android:id="@+id/map"
+                            android:id="@+id/mapp"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_marginTop="10dp"
@@ -173,7 +174,7 @@
                                 android:id="@+id/img3"
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
-                                android:src="@drawable/giftvoucher"
+                                android:src="@drawable/map"
                                 app:civ_border_color="@color/MediumPurple"
                                 app:civ_border_width="3dp" />
 
@@ -228,6 +229,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cityCard"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_marginLeft="8dp"

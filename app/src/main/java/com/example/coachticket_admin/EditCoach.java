@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class EditCoach extends AppCompatActivity {
     private TextView seat2;
     private Button edit;
     private RelativeLayout delete;
+    private ImageView back;
 
     private Coach coach;
 
@@ -55,7 +57,15 @@ public class EditCoach extends AppCompatActivity {
         edit = findViewById(R.id.editBtn);
 
         delete = findViewById(R.id.deleteCoach);
+        back = findViewById(R.id.backPress);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EditCoach.this, AllCoach.class));
+
+            }
+        });
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
