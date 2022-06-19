@@ -10,18 +10,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.coachticket_admin.Model.City;
 import com.example.coachticket_admin.Model.Coach;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -191,12 +189,14 @@ public class AddTrip extends AppCompatActivity {
         docData.put("seat2", seat2);
         docData.put("available", avai);
 
-
-        db.collection("Trips").document()
-                .set(docData).addOnSuccessListener(unused -> {
-                    Toast.makeText(AddTrip.this, "Thành công!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(AddTrip.this, AllTrip.class));
-                });
+        DocumentReference addRef = db.collection("Trips").document();
+        addRef.set(docData).addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                addRef.update("tripID", addRef.getId());
+                Toast.makeText(AddTrip.this, "Thêm chuyến thành công!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AddTrip.this, AllTrip.class));
+            }
+        });
     }
 
     private void ShowDateTimePicker(){
