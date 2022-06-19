@@ -265,14 +265,10 @@ public class EditTrip extends AppCompatActivity {
         docData.put("isDone", bool);
 
         db.collection("Trips").document(AllTrip.document)
-                .set(docData).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(EditTrip.this, "Thành công!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(EditTrip.this, AllTrip.class));
-
-            }
-        });
+                .set(docData).addOnSuccessListener(unused -> {
+                    Toast.makeText(EditTrip.this, "Thành công!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(EditTrip.this, AllTrip.class));
+                });
     }
 
     private void ShowDateTimePicker(){

@@ -12,6 +12,7 @@ public class Trip {
     private String tripName;
     private String document;
     private boolean isDone;
+    private String tripID;
 
     public String getDocument() {
         return document;
