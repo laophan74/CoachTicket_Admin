@@ -1,7 +1,10 @@
 package com.example.coachticket_admin.Model;
 
-import java.sql.Timestamp;
+import com.google.firebase.Timestamp;
+
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Ticket {
@@ -13,7 +16,6 @@ public class Ticket {
     private String userID;
     private String username;
     private String tripName;
-    private Timestamp purchaseDate;
     private String pMethod;
     private String status;
     private ArrayList<String> seatNumber;
@@ -21,8 +23,29 @@ public class Ticket {
     private String trip;
     private String station;
     private HashMap<String, Boolean> service;
+    private Timestamp purchaseDate;
 
     public Ticket(){};
+
+    public String GetDateToString(){
+        Date d = purchaseDate.toDate();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(d);
+        String pickUp =
+                calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + " "
+                        + calendar.get(Calendar.DAY_OF_MONTH) + "/"
+                        +(calendar.get(Calendar.MONTH)+1) + "/"
+                        + calendar.get(Calendar.YEAR);
+        return pickUp;
+    }
+
+    public Timestamp getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Timestamp purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
 
     public HashMap<String, Boolean> getService() {
         return service;
@@ -126,14 +149,6 @@ public class Ticket {
 
     public void setFinish(String finish) {
         this.finish = finish;
-    }
-
-    public Timestamp getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(Timestamp purchaseDate) {
-        this.purchaseDate = purchaseDate;
     }
 
     public String getpMethod() {

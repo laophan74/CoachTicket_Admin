@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoachTicket_Admin">
         <activity
-            android:name=".LoginActivity"
+            android:name=".Main"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,7 +65,7 @@
             android:name=".SignIn"
             android:exported="false" />
         <activity
-            android:name=".Main"
+            android:name=".LoginActivity"
             android:exported="true">
         </activity>
     </application>

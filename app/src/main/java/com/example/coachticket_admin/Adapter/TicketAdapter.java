@@ -47,14 +47,16 @@ public class TicketAdapter extends BaseAdapter {
         TextView name = view.findViewById(R.id.tripname);
         TextView date = view.findViewById(R.id.date);
         TextView userid = view.findViewById(R.id.userid);
+        TextView id = view.findViewById(R.id.id);
 
 
         Ticket Ticket = coachs.get(i);
 
 
         name.setText(Ticket.getTripName());
-        userid.setText(Ticket.getUserID());
-        //date.setText(String.valueOf( Ticket.get()));
+        userid.setText("Người đặt: "+ Ticket.getUsername());
+        date.setText("Ngày đặt: "+ Ticket.GetDateToString());
+        id.setText("Mã: "+Ticket.getDocument());
 
         return view;
     }
