@@ -53,6 +53,7 @@ public class AddTrip extends AppCompatActivity {
     private Coach coachName;
     private Calendar calendar;
 
+    private String dc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,6 +162,7 @@ public class AddTrip extends AppCompatActivity {
         return null;
     }
     private void addBtnClick(){
+
         String start = cStart.getCname();
         String finish = cEnd.getCname();
         Date date = calendar.getTime();

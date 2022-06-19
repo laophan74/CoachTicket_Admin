@@ -36,6 +36,13 @@ public class Trip {
         return pickUp;
     }
 
+    public String getTripID() {
+        return tripID;
+    }
+
+    public void setTripID(String tripID) {
+        this.tripID = tripID;
+    }
 
     public String getStart() {
         return start;
