@@ -53,11 +53,6 @@ public class EditTrip extends AppCompatActivity {
     private Spinner coach;
     private Calendar calendar;
 
-    private ArrayList<City> lCity = new ArrayList<>();
-    private ArrayList<String> lDist = new ArrayList<>();
-    private ArrayList<Coach> lCoach = new ArrayList<>();
-    private ArrayList<String> lDist1 = new ArrayList<>();
-    private ArrayList<Trip> lTrip = new ArrayList<>();
     private Trip trip;
 
     private Coach coachName;
@@ -104,72 +99,66 @@ public class EditTrip extends AppCompatActivity {
             }
         });
 
-        LoadCities();
-        LoadCoachs();
+        LoadSpinner();
         LoadTrip();
     }
 
     private void LoadTrip(){
         db.collection("Trips").document(AllTrip.document)
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                .get().addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        DocumentSnapshot doc = task.getResult();
+                        trip = doc.toObject(Trip.class);
+                        Date d = trip.getDeparture_time().toDate();
+                        calendar.setTime(d);
+                        SetDateTextView();
+                        if(trip.isDone()) rdYes.setChecked(true);
+                        setPintext(city1,trip.getStart());
+                        setPintext(city2,trip.getFinish());
+                        setPintext(coach,trip.getCoach());
+                    }
+                });
+    }
+
+    private void LoadSpinner() {
+        ArrayAdapter<String> aaC = new ArrayAdapter<>(EditTrip.this,
+                android.R.layout.simple_spinner_dropdown_item, Main.lDist);
+        city1.setAdapter(aaC);
+        city1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    DocumentSnapshot doc = task.getResult();
-                    trip = doc.toObject(Trip.class);
-                    Date d = trip.getDeparture_time().toDate();
-                    calendar.setTime(d);
-                    SetDateTextView();
-                    if(trip.isDone()) rdYes.setChecked(true);
-                    setPintext(city1,trip.getStart());
-                    setPintext(city2,trip.getFinish());
-                    //setPintext(coach,trip.getCoach());
-                }
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cStart = ReturnCity(city1.getSelectedItem().toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+        city2.setAdapter(aaC);
+        city2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                cEnd = ReturnCity(city2.getSelectedItem().toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+        ArrayAdapter<String> aaC1 = new ArrayAdapter<>(EditTrip.this,
+                android.R.layout.simple_spinner_dropdown_item, Main.lDist1);
+        coach.setAdapter(aaC1);
+        coach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                coachName = ReturnCoach(coach.getSelectedItem().toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
     }
 
-    private void LoadCities() {
-        db.collection("Cities").get()
-                .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot doc : task.getResult()) {
-                                    City city = doc.toObject(City.class);
-                                    lCity.add(city);
-                                }
-                                Collections.sort(lCity);
-                                for (City item : lCity) {
-                                    lDist.add(item.getCname());
-                                }
-                                ArrayAdapter<String> aaC = new ArrayAdapter<>(EditTrip.this,
-                                        android.R.layout.simple_spinner_dropdown_item, lDist);
-                                city1.setAdapter(aaC);
-                                city1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                    @Override
-                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                        cStart = ReturnCity(city1.getSelectedItem().toString());
-                                    }
-                                    @Override
-                                    public void onNothingSelected(AdapterView<?> adapterView) {
-                                    }
-                                });
-                                city2.setAdapter(aaC);
-                                city2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                    @Override
-                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                        cEnd = ReturnCity(city2.getSelectedItem().toString());
-                                    }
-                                    @Override
-                                    public void onNothingSelected(AdapterView<?> adapterView) {
-                                    }
-                                });
-                            }
-                        }
-                );
-    }
-
     private City ReturnCity(String x) {
-        for (City item : lCity) {
+        for (City item : Main.lCity) {
             if (x == item.getCname()) return item;
         }
         return null;
@@ -183,38 +172,8 @@ public class EditTrip extends AppCompatActivity {
         }
     }
 
-    private void LoadCoachs() {
-        db.collection("TravelCars").get()
-                .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot doc : task.getResult()) {
-                                    Coach coach = doc.toObject(Coach.class);
-                                    lCoach.add(coach);
-                                }
-                                //Collections.sort(lCoach);
-                                for (Coach item : lCoach) {
-                                    lDist1.add(item.getPlate());
-                                }
-                                ArrayAdapter<String> aaC1 = new ArrayAdapter<>(EditTrip.this,
-                                        android.R.layout.simple_spinner_dropdown_item, lDist1);
-                                coach.setAdapter(aaC1);
-                                coach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                    @Override
-                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                        coachName = ReturnCoach(coach.getSelectedItem().toString());
-                                    }
-                                    @Override
-                                    public void onNothingSelected(AdapterView<?> adapterView) {
-                                    }
-                                });
-
-                            }
-                        }
-                );
-    }
-
     private Coach ReturnCoach(String x) {
-        for (Coach item : lCoach) {
+        for (Coach item : Main.lCoach) {
             if (x == item.getPlate()) return item;
         }
         return null;
